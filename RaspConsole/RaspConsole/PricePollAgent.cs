@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Net.Http;
+using System.Net;
 using Serilog;
+using System.IO;
 
 namespace RaspConsole
 {
@@ -31,12 +32,20 @@ namespace RaspConsole
 
         public PricePollAgent Run()
         {
-            var client = new HttpClient();
-            client.BaseAddress = new Uri("http://winkdex.com/api/v0/price");
+            string priceUri1 = "http://winkdex.com/api/v0/price";
+            HttpWebRequest http = (HttpWebRequest)HttpWebRequest.Create(priceUri1);
+            HttpWebResponse response = (HttpWebResponse )http.GetResponse();
+            string json;
+            using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+            {
+                json = sr.ReadToEnd();
+            }
+            //var client = new HttpClient();
+            //client.BaseAddress = new Uri("http://winkdex.com/api/v0/price");
+            //var task = client.GetAsync("");
+            //task.Wait();
+            //var json = task.Result.Content.ReadAsStringAsync().Result;
 
-            var task = client.GetAsync("");
-            task.Wait();
-            var json = task.Result.Content.ReadAsStringAsync().Result;
             var jobj = Newtonsoft.Json.Linq.JObject.Parse(json);
             var price = jobj["price"];
 
