@@ -27,7 +27,8 @@ namespace RaspConsole
         public void Run()
         {
             var price = _context.PriceInformation.PriceString;
-            _context.Logger.Information("| Price: {price}  | Running {runningTime} |", price, _context.RunningTime.ToString(@"dd\ hh\:mm\:ss"));
+            var runningTime = _context.RunningTime.ToString(@"dd\ hh\:mm\:ss");
+            _context.Logger.Information("| Price: {price}  | Running {runningTime} |", price, runningTime);
         }
     }
 }

@@ -32,9 +32,10 @@ namespace RaspConsole
         {
             get
             {
-                double amount = _price / 100;
-                var pricestring = string.Format("${0}", amount);
-                return pricestring;
+                decimal d = (decimal)_price / 100;
+                var dd = new decimal(98138.45);
+                string pricestring = dd.ToString(System.Globalization.CultureInfo.CurrentCulture.NumberFormat);
+                return "$"+pricestring;
             }
         }
     }

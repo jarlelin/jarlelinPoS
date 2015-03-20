@@ -12,6 +12,7 @@ namespace RaspConsole
         static void Main(string[] args)
         {
             Console.WriteLine(string.Format("Console started on " + Environment.OSVersion.Platform.ToString()));
+            Console.WriteLine(string.Format("Environment is  " + System.Globalization.CultureInfo.CurrentCulture.ToString()));
             var appContext = new ApplicationContext();
             appContext.Logger = new Serilog.LoggerConfiguration()
                                             .WriteTo.ColoredConsole()
