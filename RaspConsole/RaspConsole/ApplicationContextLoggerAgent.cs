@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Serilog;
 
 namespace RaspConsole
 {
     public class ApplicationContextLoggerAgent
     {
         ApplicationContext _context;
+        ILogger _logger;
+
         public ApplicationContextLoggerAgent(ApplicationContext context)
         {
             _context = context;
+            _logger = context.Logger;
         }
 
         public void Execute()
         {
-            Console.WriteLine("Starting ApplicationContextLogger in seperate task.");
+            _logger.Information("Starting ApplicationContextLogger in seperate task.");
 
             while (true)
             {

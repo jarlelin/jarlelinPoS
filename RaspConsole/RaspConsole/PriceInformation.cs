@@ -23,7 +23,7 @@ namespace RaspConsole
                 if (_price != value)
                 {
                     _price = value;
-                    _logger.Debug("Price has change. New price is: {price}", PriceString);
+                    _logger.Debug("Price has changed. New price is: {price}", PriceString);
 
                 }
             }
@@ -34,7 +34,7 @@ namespace RaspConsole
             {
                 decimal d = (decimal)_price / 100;
                 var dd = new decimal(98138.45);
-                string pricestring = dd.ToString(System.Globalization.CultureInfo.CurrentCulture.NumberFormat);
+                string pricestring = d.ToString(System.Globalization.CultureInfo.CurrentCulture.NumberFormat);
                 return "$"+pricestring;
             }
         }

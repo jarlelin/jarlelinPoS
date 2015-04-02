@@ -21,7 +21,7 @@ namespace RaspConsole
 
         public void Execute()
         {
-            Console.WriteLine("Starting PricePollAgent in seperate task.");
+            _logger.Information("Starting PricePollAgent in seperate task.");
             while (true)
             {
                 Run();
