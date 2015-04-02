@@ -103,6 +103,10 @@
       <Project>{25EE9ED0-2F89-4EE7-8398-8D52EDBB5028}</Project>
       <Name>RaspConsole</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RasPos.Rest.Modules\RasPos.Rest.Modules.csproj">
+      <Project>{89caa587-cc5e-4329-91db-7c5974a58db0}</Project>
+      <Name>RasPos.Rest.Modules</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
