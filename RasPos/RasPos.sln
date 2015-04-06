@@ -5,11 +5,15 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasPos.Host", "RasPos.Host\RasPos.Host.csproj", "{31F51B02-2FDD-45A4-BF3D-29217F712DDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoSjarlelin.UnitTests", "RasPos.UnitTests\PoSjarlelin.UnitTests.csproj", "{3B0C8228-66C6-47A0-885A-AA27ABB1B04C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasPos.UnitTests", "RasPos.UnitTests\RasPos.UnitTests.csproj", "{3B0C8228-66C6-47A0-885A-AA27ABB1B04C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaspConsole", "RaspConsole\RaspConsole.csproj", "{25EE9ED0-2F89-4EE7-8398-8D52EDBB5028}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaspPos.BackgroundAgents", "RaspConsole\RaspPos.BackgroundAgents.csproj", "{25EE9ED0-2F89-4EE7-8398-8D52EDBB5028}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasPos.Rest.Modules", "RasPos.Rest.Modules\RasPos.Rest.Modules.csproj", "{89CAA587-CC5E-4329-91DB-7C5974A58DB0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Tests", "_Tests", "{A4C1D4E5-F29F-459B-B084-5F12552EAC61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasPos.ShoppingCart", "RasPos.ShoppingCart\RasPos.ShoppingCart.csproj", "{FF93665D-6ABC-438F-83F6-7E7F760B5A0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +37,15 @@ Global
 		{89CAA587-CC5E-4329-91DB-7C5974A58DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89CAA587-CC5E-4329-91DB-7C5974A58DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89CAA587-CC5E-4329-91DB-7C5974A58DB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF93665D-6ABC-438F-83F6-7E7F760B5A0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF93665D-6ABC-438F-83F6-7E7F760B5A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF93665D-6ABC-438F-83F6-7E7F760B5A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF93665D-6ABC-438F-83F6-7E7F760B5A0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3B0C8228-66C6-47A0-885A-AA27ABB1B04C} = {A4C1D4E5-F29F-459B-B084-5F12552EAC61}
 	EndGlobalSection
 EndGlobal

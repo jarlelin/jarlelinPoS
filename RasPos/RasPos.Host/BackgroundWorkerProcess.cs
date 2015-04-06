@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using RaspConsole;
+using RaspPos.BackgroundAgents;
 using Serilog;
 
 namespace RasPos.Host

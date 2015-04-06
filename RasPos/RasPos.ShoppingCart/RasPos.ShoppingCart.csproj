@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{25EE9ED0-2F89-4EE7-8398-8D52EDBB5028}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{FF93665D-6ABC-438F-83F6-7E7F760B5A0D}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RaspConsole</RootNamespace>
-    <AssemblyName>RaspConsole</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>RasPos.ShoppingCart</RootNamespace>
+    <AssemblyName>RasPos.ShoppingCart</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,25 +22,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog">
-      <HintPath>..\packages\Serilog.1.4.204\lib\net40\Serilog.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog.FullNetFx">
-      <HintPath>..\packages\Serilog.1.4.204\lib\net40\Serilog.FullNetFx.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,15 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationContext.cs" />
-    <Compile Include="ApplicationContextLoggerAgent.cs" />
-    <Compile Include="PriceInformation.cs" />
-    <Compile Include="PricePollAgent.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Invoice.cs" />
+    <Compile Include="InvoiceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Qr\IQrCodeAgent.cs" />
+    <Compile Include="Qr\QrCodeAgent.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\RaspConsole\RaspPos.BackgroundAgents.csproj">
+      <Project>{25EE9ED0-2F89-4EE7-8398-8D52EDBB5028}</Project>
+      <Name>RaspPos.BackgroundAgents</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

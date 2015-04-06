@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Serilog;
+﻿using Serilog;
 
-namespace RaspConsole
+namespace RaspPos.BackgroundAgents
 {
     public class ApplicationContextLoggerAgent
     {
