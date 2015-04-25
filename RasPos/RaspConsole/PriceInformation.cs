@@ -1,27 +1,29 @@
-﻿using Serilog;
+﻿using RasPos.Common;
+using Serilog;
 
 namespace RaspPos.BackgroundAgents
 {
     public class PriceInformation
     {
-        public const double BITSINABITCOIN = 1000000;
         public ILogger _logger { get; set; }
 
         public PriceInformation(ILogger logger)
         {
             _logger = logger;
+            _logger.Debug("Created new PriceInformation object.");
         }
 
-        private double _price;
+        private int _dollarPriceFor100Btc;
+        public double DollarPriceOf1BTC { get { return (double) _dollarPriceFor100Btc/100; }  }
 
-        public double Price
+        public int DollarPriceFor100BTC
         {
-            get { return _price; }
+            get { return _dollarPriceFor100Btc; }
             set
             {
-                if (_price != value)
+                if (_dollarPriceFor100Btc != value)
                 {
-                    _price = value;
+                    _dollarPriceFor100Btc = value;
                     _logger.Debug("Price has changed. New price is: {price}", PriceString);
                 }
             }
@@ -31,19 +33,28 @@ namespace RaspPos.BackgroundAgents
         {
             get
             {
-                decimal d = (decimal) _price/100;
+                decimal d = (decimal) _dollarPriceFor100Btc/100;
                 string pricestring = d.ToString(System.Globalization.CultureInfo.CurrentCulture.NumberFormat);
                 return "$" + pricestring;
             }
         }
 
-        public double GetPriceInBits(double priceInDollars)
+        public int GetPriceInBits(double priceInDollars)
         {
-            var bits = priceInDollars / _price * BITSINABITCOIN;
+            var bits = priceInDollars / DollarPriceOf1BTC  * BitcoinConstants.BitsInABitcoin ;
+            _logger.Debug("The price of {0} dollars in bitcoin is {1} bits. The price per bitcoin was {2}", priceInDollars, bits, DollarPriceOf1BTC);
 
-            //_logger.Debug("The price of {dollarPrice} dollars in bitcoin is {bitPrice} bits. The price per bitcoin was {pricePerBitcoin}", priceInDollars, bits, _price);
-            _logger.Debug("The price of {0} dollars in bitcoin is {1} bits. The price per bitcoin was {2}", priceInDollars, bits, _price);
-            return bits;
+            var intBits = (int) bits;
+            return intBits;
         }
+
+        public double GetPriceInBTC(double priceInDollars)
+        {
+            var btc = priceInDollars / (DollarPriceOf1BTC);
+
+            _logger.Debug("The price of {0} dollars in bitcoin is {1} btc. The price per bitcoin was {2}", priceInDollars, btc, DollarPriceOf1BTC);
+            return btc;
+        }
+
     }
 }

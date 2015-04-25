@@ -37,7 +37,7 @@ namespace RaspPos.BackgroundAgents
             {
                 json = sr.ReadToEnd();
             }
-            //var client = new HttpClient();
+            //var client = new HttpClient(); // not supported in mono
             //client.BaseAddress = new Uri("http://winkdex.com/api/v0/price");
             //var task = client.GetAsync("");
             //task.Wait();
@@ -46,8 +46,8 @@ namespace RaspPos.BackgroundAgents
             var jobj = Newtonsoft.Json.Linq.JObject.Parse(json);
             var price = jobj["price"];
 
-            _priceInformation.Price = int.Parse(price.ToString()) ;
-            _logger.Debug("{timestamp} - Price is {price}", DateTime.Now.ToString(), _priceInformation.PriceString);
+            _priceInformation.DollarPriceFor100BTC = int.Parse(price.ToString()) ;
+            _logger.Debug("{timestamp} - DollarPriceFor100BTC is {price}", DateTime.Now.ToString(), _priceInformation.PriceString);
 
             return this;
         }

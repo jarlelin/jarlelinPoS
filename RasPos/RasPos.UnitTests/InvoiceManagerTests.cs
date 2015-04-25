@@ -9,16 +9,15 @@ namespace PoSjarlelin.UnitTests
     [TestFixture]
     public class InvoiceManagerTests
     {
-        [Test]
+        [Test, Category("Unit")]
         public void LoadMasterPublicKeyTest()
         {
 
         }
 
-        [Test]
+        [Test, Category("Unit")]
         public void CreateNewAddress()
         {
-
         }
     }
 }

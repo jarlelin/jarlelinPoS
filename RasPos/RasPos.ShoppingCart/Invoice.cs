@@ -7,14 +7,16 @@ namespace RasPos.ShoppingCart
     public class Invoice
     {
         private readonly PurchasableItem _product;
-        private readonly string _receivingAddress;
-        private readonly PriceInformation _priceInformation;
 
 
-        public int ProductId { get { return _product.ProductId; } }
-        public string ProductName { get { return _product.Name; } }
-        public double Price { get { return _product.Price; } }
-        public double PriceInBits { get { return _priceInformation.GetPriceInBits(_product.Price); } }
+        public int ProductId { get; private set; }
+        public string ProductName { get; private set; }
+        public string DenominatedPrice { get; private set; }
+        public int PriceInBits { get; private set; }
+        public double PriceOfOneBitcoin { get; private set; }
+        public string PayToAddress { get; set; }
+        public string PaymentQrCode { get; set; }
+
 
         public Invoice(PurchasableItem product, string receivingAddress, PriceInformation priceInformation)
         {
@@ -22,8 +24,13 @@ namespace RasPos.ShoppingCart
             if (receivingAddress == null) throw new ArgumentNullException("receivingAddress");
             if (priceInformation == null) throw new ArgumentNullException("priceInformation");
             _product = product;
-            _receivingAddress = receivingAddress;
-            _priceInformation = priceInformation;
+
+
+            ProductId = product.ProductId;
+            ProductName = product.Name;
+            PriceInBits = priceInformation.GetPriceInBits(_product.Price);
+            DenominatedPrice = "$"+ product.Price;
+            PriceOfOneBitcoin = priceInformation.DollarPriceOf1BTC;
         }
     }
 }

@@ -6,8 +6,11 @@ namespace RaspPos.BackgroundAgents
 {
     public class ApplicationContext
     {
-        public ApplicationContext()
+        public string Name { get; set; }
+
+        public ApplicationContext(string name = "not the one")
         {
+            Name = name;
             StartTime = DateTime.Now;
             Products = PurchasableItem.GetGoods();
         }

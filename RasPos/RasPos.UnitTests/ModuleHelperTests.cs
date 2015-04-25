@@ -7,7 +7,7 @@ namespace RasPos.UnitTests
     [TestFixture]
     public class ModuleHelperTests
     {
-        [Test]
+        [Test, Category("Unit")]
         public void GetAbsoluteUrlTest()
         {
             var str = ModuleHelper.GetAbsoluteUrl("relativeUrl");

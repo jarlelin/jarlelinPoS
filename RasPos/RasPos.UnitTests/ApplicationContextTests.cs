@@ -7,13 +7,15 @@ namespace RasPos.UnitTests
     [TestFixture]
     public class ApplicationContextTests
     {
-        [Test]
+        [Test, Category("Unit")]
         public void GetProductsTest()
         {
-            var app = new ApplicationContext();
-            var p = app.Products;
+            var ctx = new ApplicationContext("test");
+            var p = ctx.Products;
 
             Assert.IsTrue(p.Any());
+
+            Assert.AreEqual("test", ctx.Name);
         }
     }
 }

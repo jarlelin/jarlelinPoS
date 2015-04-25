@@ -1,29 +1,37 @@
-﻿using Serilog.Extras.Topshelf;
+﻿using System;
+using Nancy.Hosting.Self;
+using RaspPos.BackgroundAgents;
+using Serilog.Extras.Topshelf;
 using Topshelf;
+using Topshelf.Configurators;
 using Topshelf.Logging;
 
 namespace RasPos.Host
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-            var httpPort = "80";
-            HostLogger.UseLogger(new SerilogHostLoggerConfigurator());
+            var uri = new Uri("http://localhost:80");
+            var myAppContext = new ApplicationContext("MyContext");
+            var backgroundWorker = BackgroundWorkerProcess.Start(myAppContext);
+            var bootstrapper = new MyNancyBootstrapper(myAppContext);
 
-            HostFactory.Run(x =>
+            using (var host = new NancyHost(bootstrapper, uri))
             {
-                x.Service<OwinService>(s =>
-                {
-                    s.ConstructUsing(name => new OwinService(httpPort));
-                    s.WhenStarted((a, b) => a.Start(b));
-                    s.WhenStopped((a, b) => a.Stop(b));
-                });
-                x.RunAsLocalService();
-                x.SetDisplayName("RasPos bitcoin PoS REST API");
-                x.SetServiceName("RasPos.Host");
-                x.SetDescription("RasPos REST api for kall til point of sale funksjonalitet med bitcoin.");
-            });
+                host.Start();
+
+                Console.WriteLine("Host has started.");
+                Console.WriteLine("Press any key to exit...");
+                Console.ReadLine();
+            }
+
+            backgroundWorker.Dispose();
+
+
+            
         }
+
     }
 }

@@ -28,7 +28,7 @@ namespace RaspPos.BackgroundAgents
         {
             var price = _context.PriceInformation.PriceString;
             var runningTime = _context.RunningTime.ToString(@"dd\ hh\:mm\:ss");
-            _context.Logger.Information("| Price: {price}  | Running {runningTime} |", price, runningTime);
+            _context.Logger.Information("| DollarPriceFor100BTC: {price}  | Running {runningTime} |", price, runningTime);
         }
     }
 }
